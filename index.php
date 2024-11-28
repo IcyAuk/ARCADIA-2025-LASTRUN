@@ -10,7 +10,7 @@ $password = 'p3df65259f67c7819aed051ef7c3121a7502e37f5b24c62979d818ab5dcd42cb2';
 $charset = 'utf8mb4'; // Character set
 
 // DSN (Data Source Name) for PDO
-$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+$dsn = "pgsql:host=$host;dbname=$dbname;user=$username;password=$password";
 
 try {
     // Create a PDO instance (Database connection)
