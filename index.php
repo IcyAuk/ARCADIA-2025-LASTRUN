@@ -1,6 +1,8 @@
 <?php
 
-echo("Hello World (dev)");
+echo("Hello World (dev) </br>");
+echo($_SERVER['REQUEST_URI'] . "</br>");
+echo(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) . "</br>");
 
 // Database configuration
 $host = 'c3l5o0rb2a6o4l.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com'; // Database host
@@ -23,10 +25,28 @@ try {
     // Set PDO default fetch mode to associative array
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-    echo "Database connection successful.";
+    echo "Database connection successful. </br>";
 } catch (PDOException $e) {
     // Handle connection error
     echo "Database connection failed: " . $e->getMessage();
     exit; // Stop script execution on failure
 }
+
+// QUERY
+try {
+    // Prepare the SQL query
+    $stmt = $pdo->query("SELECT * FROM test1");
+
+    // Fetch all rows as an associative array
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Loop through and display results
+    foreach ($rows as $row) {
+        echo "Name: " . $row['name'] . ", Price: " . $row['price'] . "<br>";
+    }
+} catch (PDOException $e) {
+    // Handle exceptions
+    echo "Error: " . $e->getMessage();
+}
+
 ?>
