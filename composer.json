@@ -1,8 +1,5 @@
 {
     "require": {
-        "symfony/http-foundation": "^7.0"
-    },
-    "autoload": {
-        "files": []
+        "vlucas/phpdotenv": "^5.6"
     }
 }
