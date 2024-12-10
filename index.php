@@ -9,4 +9,4 @@ $dotenv->load();
 require_once("core/Model.php");
 //Model::openDatabaseConnection();
 
-require_once("app/view/bootstrapHome.php");
+require_once("app/view/mockup/bootstrapHome.php");
