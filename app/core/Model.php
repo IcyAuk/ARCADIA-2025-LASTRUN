@@ -2,45 +2,140 @@
 
 namespace App\Core;
 
-class Model
+defined('ROOTPATH') OR exit('Access Denied!');
+
+trait Model
 {
-    private static $pdo = null; //static is accessible without creating an object of the class
+	use Database;
 
-    public static function openDatabaseConnection(): \PDO
-    {
-        if (self::$pdo === null)
-        {
-            $host = $_ENV['DATABASE_HOST'];
-            $port = $_ENV['DATABASE_PORT'];
-            $dbname = $_ENV['DATABASE_NAME'];
-            $username = $_ENV['DATABASE_USERNAME'];
-            $password = $_ENV['DATABASE_PASSWORD'];
-            $charset = $_ENV['DATABASE_CHARSET'] ?? 'utf8'; // Character set
-            $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;user=$username;password=$password;options='--client_encoding=$charset'"; //Data Source Name
+	protected $limit 		= 10;
+	protected $offset 		= 0;
+	protected $order_type 	= "desc";
+	protected $order_column = "id";
+	public $errors 		= [];
 
-            try
-            {
-                self::$pdo = new \PDO($dsn);
-                self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-                self::$pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+	public function findAll()
+	{
+	
+		$query = "select * from $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 
-                return self::$pdo;
-            }
-            catch (\PDOException $e)
-            {
-                //append error message to log file
-                $error_string = "[" . date('Y-m-d H:i:s') . "] " . $e->getMessage() . "\n";
-                error_log($error_string, 3, __DIR__ . '/../logs/db_error.log');
-                http_response_code(500);
-                throw $e;
-            }
-            
-        }
+		return $this->query($query);
+	}
 
-    }
+	public function where($data, $data_not = [])
+	{
+		$keys = array_keys($data);
+		$keys_not = array_keys($data_not);
+		$query = "select * from $this->table where ";
 
-    public static function closeDatabaseConnection(): void
-    {
-        self::$pdo = null;
-    }
+		foreach ($keys as $key) {
+			$query .= $key . " = :". $key . " && ";
+		}
+
+		foreach ($keys_not as $key) {
+			$query .= $key . " != :". $key . " && ";
+		}
+		
+		$query = trim($query," && ");
+
+		$query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
+		$data = array_merge($data, $data_not);
+
+		return $this->query($query, $data);
+	}
+
+	public function first($data, $data_not = [])
+	{
+		$keys = array_keys($data);
+		$keys_not = array_keys($data_not);
+		$query = "select * from $this->table where ";
+
+		foreach ($keys as $key) {
+			$query .= $key . " = :". $key . " && ";
+		}
+
+		foreach ($keys_not as $key) {
+			$query .= $key . " != :". $key . " && ";
+		}
+		
+		$query = trim($query," && ");
+
+		$query .= " limit $this->limit offset $this->offset";
+		$data = array_merge($data, $data_not);
+		
+		$result = $this->query($query, $data);
+		if($result)
+			return $result[0];
+
+		return false;
+	}
+
+	public function insert($data)
+	{
+		
+		/** remove unwanted data **/
+		if(!empty($this->allowedColumns))
+		{
+			foreach ($data as $key => $value) {
+				
+				if(!in_array($key, $this->allowedColumns))
+				{
+					unset($data[$key]);
+				}
+			}
+		}
+
+		$keys = array_keys($data);
+
+		$query = "insert into $this->table (".implode(",", $keys).") values (:".implode(",:", $keys).")";
+		$this->query($query, $data);
+
+		return false;
+	}
+
+	public function update($id, $data, $id_column = 'id')
+	{
+
+		/** remove unwanted data **/
+		if(!empty($this->allowedColumns))
+		{
+			foreach ($data as $key => $value) {
+				
+				if(!in_array($key, $this->allowedColumns))
+				{
+					unset($data[$key]);
+				}
+			}
+		}
+
+		$keys = array_keys($data);
+		$query = "update $this->table set ";
+
+		foreach ($keys as $key) {
+			$query .= $key . " = :". $key . ", ";
+		}
+
+		$query = trim($query,", ");
+
+		$query .= " where $id_column = :$id_column ";
+
+		$data[$id_column] = $id;
+
+		$this->query($query, $data);
+		return false;
+
+	}
+
+	public function delete($id, $id_column = 'id')
+	{
+
+		$data[$id_column] = $id;
+		$query = "delete from $this->table where $id_column = :$id_column ";
+		$this->query($query, $data);
+
+		return false;
+
+	}
+
+	
 }

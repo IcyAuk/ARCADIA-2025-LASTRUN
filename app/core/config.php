@@ -5,11 +5,13 @@ defined('ROOTPATH') OR exit('Access Denied!');
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {
 	/** localhost database config **/
-	define('DBNAME', 'simplesocial_db');
+	define('ROOT', 'http://localhost/arcadia-2025-lastrun/');
+	define('DBNAME', 'arcadia2025-lastrun');
 	define('DBHOST', 'localhost');
-	define('DBUSER', 'root');
-	define('DBPASS', '');
-	define('ROOT', $_ENV['LOCALHOST_WEBSITE_URL']);
+	define('DBUSER', 'lastrun');
+	define('DBPASS', '5556');
+	define('DBPORT', '');
+	define('DBCHARSET', '');
 
 }else
 {
@@ -23,9 +25,11 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBCHARSET', $_ENV['DATABASE_CHARSET']);
 }
 
+
 define('DATABASE_MONGODB_URI', $_ENV['DATABASE_MONGODB_URI']);
 
-define('APP_NAME', "My Webiste");
-define('APP_DESC', "Best website on the planet");
+define('APP_NAME', "ARCADIA");
+define('APP_DESC', "Site de Zoo");
 
+define('IS_DOMAIN_DEPLOYED',false);
 define('DEBUG', true);

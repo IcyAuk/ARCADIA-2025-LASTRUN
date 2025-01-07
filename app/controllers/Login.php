@@ -4,7 +4,7 @@ namespace App\Controller;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
-use App\Model\User;
+use App\Model\Staff;
 use App\Model\Request;
 use App\Model\Session;
 use App\Core\MainController;
@@ -22,7 +22,7 @@ class Login
 		$req = new Request;
 		if($req->posted())
 		{
-			$user = new User();
+			$user = new Staff();
 
 			$email = $req->getFromPost('email');
 			$password = $req->getFromPost('password');

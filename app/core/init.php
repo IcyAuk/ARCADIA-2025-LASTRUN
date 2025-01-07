@@ -7,8 +7,8 @@ spl_autoload_register(function($classname){
 
 	$classname = explode("\\", $classname);
 	$classname = end($classname);
-	$modelPath = "../app/models/".ucfirst($classname).".php";
-	$interfacePath = "../app/interfaces/".ucfirst($classname).".php";
+	$modelPath = "../app/models/".ucfirst(strtolower($classname)).".php";
+	$interfacePath = "../app/interfaces/".uctwo(strtolower($classname)).".php";
 	
     if (file_exists($modelPath)) {
         require $modelPath;
@@ -26,3 +26,11 @@ require 'Database.php';
 require 'Model.php';
 require 'Controller.php';
 require 'App.php';
+
+function uctwo(string $string) : string
+{
+    $firstTwo = strtoupper(substr($string, 0, 2));
+    $remaining = substr($string, 2);
+
+    return $firstTwo . $remaining;
+}

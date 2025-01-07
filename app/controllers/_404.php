@@ -1,21 +1,16 @@
 <?php
 
 namespace App\Controller;
-use App\Model\Request;
-use App\Model\Session;
 use App\Core\MainController;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
-class Home
+class _404
 {
     use MainController;
+
     public function index()
     {
-        $data = [];
-        $session = new Session;
-        
-        $this->view('home',$data);
-
+        $this->view('404');
     }
 }

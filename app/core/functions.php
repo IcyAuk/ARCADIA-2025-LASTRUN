@@ -47,6 +47,6 @@ function esc($str)
 
 function redirect($path)
 {
-	header("Location: " . ROOT."/".$path);
+	header("Location: " . rtrim(ROOT,'/') ."/public/".$path);
 	die;
 }
