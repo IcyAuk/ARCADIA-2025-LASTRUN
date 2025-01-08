@@ -13,7 +13,7 @@ if (phpversion() < $minPHPVersion)
 }
 
 //Autoloader for MongoDB and Dotenv
-include __DIR__ . '/..' . "/vendor/autoload.php";
+require __DIR__ . '/..' . "/vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
