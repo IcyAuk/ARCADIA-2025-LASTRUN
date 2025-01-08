@@ -2,10 +2,10 @@
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
-if($_SERVER['SERVER_NAME'] == 'localhost')
+if($_SERVER['SERVER_NAME'] == 'arcadia-2025-lastrun.local')
 {
 	/** localhost database config **/
-	define('ROOT', 'http://localhost/arcadia-2025-lastrun/');
+	define('ROOT', 'http://arcadia-2025-lastrun.local/');
 	define('DBNAME', 'arcadia2025-lastrun');
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'lastrun');
@@ -25,6 +25,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBCHARSET', $_ENV['DATABASE_CHARSET']);
 }
 
+define('LOCALHOST_URL', 'http://arcadia-2025-lastrun.local');
 
 define('DATABASE_MONGODB_URI', $_ENV['DATABASE_MONGODB_URI']);
 

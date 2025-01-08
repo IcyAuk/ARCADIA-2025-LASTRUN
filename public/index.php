@@ -1,5 +1,5 @@
 <?php
-echo("index start");
+echo($_SERVER['SERVER_NAME'] );
 echo("</br>");
 echo("front controller current dir: ".__DIR__);
 echo("</br>");
@@ -26,7 +26,6 @@ try{
 	require __DIR__ . '/..' . "/vendor/autoload.php";
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 	$dotenv->load();
-	var_dump($dotenv);
 }catch(Exception)
 {
 	echo("Error loading Dotenv");
@@ -46,4 +45,3 @@ require "../app/core/init.php";
 //Start App
 $app = new App\Core\App();
 $app->loadController();
-echo($app);
