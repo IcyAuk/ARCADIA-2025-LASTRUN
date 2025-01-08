@@ -1,6 +1,6 @@
 <?php
 echo("index");
-/*
+
 // FRONT CONTROLLER
 
 session_start();
@@ -30,4 +30,3 @@ DEBUG ? ini_set('display_errors', 1) : ini_set('display_errors', 0);
 //Start App
 $app = new App;
 $app->loadController();
-*/
