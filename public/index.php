@@ -1,6 +1,11 @@
 <?php
 echo("index start");
 
+// Enable error reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // FRONT CONTROLLER
 
 session_start();
@@ -28,7 +33,7 @@ echo(__DIR__);
 require "../app/core/init.php";
 
 //Debug Mode
-DEBUG ? ini_set('display_errors', 1) : ini_set('display_errors', 0);
+//DEBUG ? ini_set('display_errors', 1) : ini_set('display_errors', 0);
 
 //Start App
 $app = new App\Core\App();
