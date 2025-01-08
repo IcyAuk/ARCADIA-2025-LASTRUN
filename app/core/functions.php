@@ -29,7 +29,6 @@ function check_extensions()
 	if(!empty($not_loaded))
 	{
 		show("Extensions manquantes : <br>".implode("<br>", $not_loaded));
-		die;
 	}
 }
 
