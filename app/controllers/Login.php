@@ -30,7 +30,7 @@ class Login
 			if($row = $user->first(['email'=>$email]))
 			{
 				//check if password is correct
-				if(password_verify($password, $row->password))
+				if(password_verify($password, $row->passwordHash))
 				{
 					//auth
 					$ses = new Session;

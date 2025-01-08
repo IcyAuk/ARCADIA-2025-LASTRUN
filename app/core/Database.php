@@ -47,7 +47,7 @@ Trait Database
             }
             
         }
-
+        return self::$pdo;
     }
 
     public function openMongoDBDatabaseConnection()

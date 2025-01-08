@@ -151,5 +151,27 @@ class Session implements ISession
 		return [];
 	}
 
+	public function checkLevel(array $data): bool
+	{
+		$currentLevel = $this->user('level');
 
+        if (!empty($data) && is_array($data))
+        {
+            foreach ($data as $role)
+            {
+                if ($role === $currentLevel)
+                {
+                    return true;
+                }
+            }
+        }
+		return false;
+	}
+	
+	public function destroy(): void
+	{
+		$this->start_session();
+		session_unset();
+		session_destroy();
+	}
 }

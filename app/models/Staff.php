@@ -2,23 +2,26 @@
 
 namespace App\Model;
 use App\Core\Model;
+use App\Model\Session;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
 class Staff
 {
     use Model;
-	protected $table = 'test_table';
+	protected $table = 'Staff';
 
 	protected $allowedColumns = [
 		
-		'name',
+		'level',
+		'firstName',
+		'lastName',
 		'email',
-		'password',
-		'role',
+		'passwordHash',
+
 	];
 
-	public function validate($data)
+	public function validate(array $data)
 	{
 		$this->errors = [];
 
@@ -31,19 +34,37 @@ class Staff
 			$this->errors['email'] = "Email is not valid";
 		}
 
-		if(empty($data['name']))
+		if(empty($data['firstName']))
 		{
-			$this->errors['name'] = "Username is required";
+			$this->errors['firstName'] = "firstName is required";
 		}else
-		if(!preg_match("/^[a-zA-Z]+$/",$data["name"]))
+		if(!preg_match("/^[a-zA-Z]+$/",$data["firstName"]))
 		{
-			$this->errors['name'] = "Username can only have letters with no white space";
+			$this->errors['firstName'] = "firstName can only have letters with no white space";
+		}
+
+		if(empty($data['lastName']))
+		{
+			$this->errors['lastName'] = "lastName is required";
+		}else
+		if(!preg_match("/^[a-zA-Z]+$/",$data["lastName"]))
+		{
+			$this->errors['lastName'] = "lastName can only have letters with no white space";
 		}
 		
 		if(empty($data['password']))
 		{
 			$this->errors['password'] = "Password is required";
 		}
+
+		if(empty($data['level']))
+        {
+            $this->errors['level'] = "Level is required";
+        }else
+        if(!in_array($data['level'], ['Vet', 'Mod', 'Admin']))
+        {
+            $this->errors['level'] = "Invalid level selected";
+        }
 
 		if(empty($this->errors))
 		{
