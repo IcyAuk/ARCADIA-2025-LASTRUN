@@ -1,5 +1,6 @@
 <?php
 echo("index start");
+echo(__DIR__);
 
 // Enable error reporting
 ini_set('display_errors', 1);
