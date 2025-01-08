@@ -1,5 +1,5 @@
 <?php
-echo("index");
+echo("index start");
 
 // FRONT CONTROLLER
 
@@ -16,10 +16,13 @@ if (phpversion() < $minPHPVersion)
 require __DIR__ . '/..' . "/vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
+var_dump($dotenv);
 
 
 //  Absolute Path to this file
 define('ROOTPATH', __DIR__ . DIRECTORY_SEPARATOR);
+var_dump(ROOTPATH);
+var_dump(__DIR__);
 
 //init
 require "../app/core/init.php";
@@ -30,3 +33,4 @@ DEBUG ? ini_set('display_errors', 1) : ini_set('display_errors', 0);
 //Start App
 $app = new App;
 $app->loadController();
+var_dump($app);
