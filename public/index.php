@@ -1,6 +1,8 @@
 <?php
 echo("index start");
-echo(__DIR__);
+echo("</br>");
+echo("front controller current dir: ".__DIR__);
+echo("</br>");
 
 // Enable error reporting
 ini_set('display_errors', 1);
@@ -18,17 +20,22 @@ if (phpversion() < $minPHPVersion)
 	die("Your PHP version must be {$minPHPVersion} or higher to run this app. Your current version is " . phpversion());
 }
 
-//Autoloader for MongoDB and Dotenv
-require __DIR__ . '/..' . "/vendor/autoload.php";
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
-var_dump($dotenv);
+try{
 
+	//Autoloader for MongoDB and Dotenv
+	require __DIR__ . '/..' . "/vendor/autoload.php";
+	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+	$dotenv->load();
+	var_dump($dotenv);
+}catch(Exception)
+{
+	echo("Error loading Dotenv");
+}
 
 //  Absolute Path to this file
 define('ROOTPATH', __DIR__ . DIRECTORY_SEPARATOR);
 echo(ROOTPATH);
-echo(__DIR__);
+echo("</br>");
 
 //init
 require "../app/core/init.php";
