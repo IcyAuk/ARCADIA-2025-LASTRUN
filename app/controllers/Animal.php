@@ -30,7 +30,7 @@ class Animal
 
         if ($req->posted())
         {
-            $animal = new Animal();
+            $animal = new AnimalModel();
             $habitat = new Habitat();
             $image = new Images();
 

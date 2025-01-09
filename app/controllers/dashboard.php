@@ -29,7 +29,7 @@ class Dashboard
         $animal = new AnimalModel();
         $data['animals'] = $animal->findAll();
         
-        $this->view('dashboard.animals.list', $data);
+        $this->view('dashboard.animal.list', $data);
     }
 
     public function createAnimal()

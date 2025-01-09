@@ -110,6 +110,14 @@ if(!$is_logged_in)
                         Create Animal
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/dashboard/listAnimals" class="nav-link link-body-emphasis" aria-current="page">
+                        <svg class="bi pe-none me-2" width="16" height="16">
+                            <use xlink:href="#home"></use>
+                        </svg>
+                        List Animal
+                    </a>
+                </li>
                 <li>
                     <a href="/register" class="nav-link link-body-emphasis">
                         <svg class="bi pe-none me-2" width="16" height="16">
