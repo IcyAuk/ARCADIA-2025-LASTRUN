@@ -32,15 +32,6 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="image_id">Image:</label>
-            <select id="image_id" name="image_id" class="form-control" required>
-                <?php foreach ($images as $image): ?>
-                    <option value="<?php echo $image->id; ?>"><?php echo $image->path; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-
         <div class="form-group text-center mt-3">
             <button type="submit" class="btn btn-primary">Create</button>
         </div>

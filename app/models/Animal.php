@@ -13,6 +13,7 @@ class Animal
     protected $table = 'Animal';
 
     protected $allowedColumns = [
+        'id',
         'name',
         'race',
         'habitat_id',
@@ -39,10 +40,6 @@ class Animal
 
         if (empty($data['habitat_id'])) {
             $this->errors['habitat_id'] = "Habitat ID is required";
-        }
-
-        if (empty($data['image_id'])) {
-            $this->errors['image_id'] = "Image ID is required";
         }
 
         if (empty($this->errors)) {

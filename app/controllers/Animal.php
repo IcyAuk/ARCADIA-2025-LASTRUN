@@ -32,7 +32,6 @@ class Animal
         {
             $animal = new AnimalModel();
             $habitat = new Habitat();
-            $image = new Images();
 
             $animalData = $req->getFromPost();
 
@@ -40,12 +39,6 @@ class Animal
             if (!$habitat->first(['id' => $animalData['habitat_id']]))
             {
                 $animal->errors['habitat_id'] = "Invalid habitat selected";
-            }
-
-            // Validate image
-            if (!$image->first(['id' => $animalData['image_id']]))
-            {
-                $animal->errors['image_id'] = "Invalid image selected";
             }
 
             if (empty($animal->errors) && $animal->validate($animalData))
@@ -58,7 +51,6 @@ class Animal
         }
 
         $data['habitats'] = (new Habitat())->findAll();
-        $data['images'] = (new Images())->findAll();
 
         $this->view('animal.create', $data);
     }

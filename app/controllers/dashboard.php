@@ -27,7 +27,7 @@ class Dashboard
     {
         $data = [];
         $animal = new AnimalModel();
-        $data['animals'] = $animal->findAll();
+        $data['animals'] = $animal->findAll() ? $animal : [];
         
         $this->view('dashboard.animal.list', $data);
     }
@@ -44,7 +44,6 @@ class Dashboard
         {
             $animal = new AnimalModel();
             $habitat = new Habitat();
-            $image = new Images();
 
             $animalData = $req->getFromPost();
 
@@ -52,12 +51,6 @@ class Dashboard
             if (!$habitat->first(['id' => $animalData['habitat_id']]))
             {
                 $animal->errors['habitat_id'] = "Invalid habitat selected";
-            }
-
-            // Validate image
-            if (!$image->first(['id' => $animalData['image_id']]))
-            {
-                $animal->errors['image_id'] = "Invalid image selected";
             }
 
             if (empty($animal->errors) && $animal->validate($animalData))
@@ -70,7 +63,6 @@ class Dashboard
         }
 
         $data['habitats'] = (new Habitat())->findAll();
-        $data['images'] = (new Images())->findAll();
 
         $this->view('dashboard.animal.create', $data);
     }

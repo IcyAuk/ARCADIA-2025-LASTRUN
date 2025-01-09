@@ -22,7 +22,7 @@ trait Model
 		return $this->query($query);
 	}
 
-	public function where($data, $data_not = [])
+	public function where($data, $data_not = []) //$data is associative array
 	{
 		$keys = array_keys($data);
 		$keys_not = array_keys($data_not);
@@ -41,7 +41,7 @@ trait Model
 		$query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 		$data = array_merge($data, $data_not);
 
-		return $this->query($query, $data);
+		return $this->query($query, $data); //array data is passed to prepare statement
 	}
 
 	public function first($data, $data_not = [])
@@ -135,6 +135,12 @@ trait Model
 
 		return false;
 
+	}
+
+	public function join($table, $condition, $type = 'INNER')
+	{
+		$query = "select * from $this->table $type JOIN $table ON $condition";
+		return $this->query($query);
 	}
 
 	
