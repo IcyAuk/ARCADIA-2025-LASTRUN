@@ -72,6 +72,6 @@ class Dashboard
         $data['habitats'] = (new Habitat())->findAll();
         $data['images'] = (new Images())->findAll();
 
-        $this->view('dashboard.animals.create', $data);
+        $this->view('dashboard.animal.create', $data);
     }
 }

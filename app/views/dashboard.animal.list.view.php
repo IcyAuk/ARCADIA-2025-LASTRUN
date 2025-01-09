@@ -27,7 +27,7 @@
             <label for="habitat_id">Habitat:</label>
             <select id="habitat_id" name="habitat_id" class="form-control" required>
                 <?php foreach ($habitats as $habitat): ?>
-                    <option value="<?php echo $habitat->id; ?>"><?php echo $habitat->title; ?></option>
+                    <option value="<?php echo $habitat['id']; ?>"><?php echo $habitat['title']; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -36,7 +36,7 @@
             <label for="image_id">Image:</label>
             <select id="image_id" name="image_id" class="form-control" required>
                 <?php foreach ($images as $image): ?>
-                    <option value="<?php echo $image->id; ?>"><?php echo $image->path; ?></option>
+                    <option value="<?php echo $image['id']; ?>"><?php echo $image['path']; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

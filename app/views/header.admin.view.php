@@ -103,15 +103,15 @@ if(!$is_logged_in)
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="listAnimals" class="nav-link link-body-emphasis" aria-current="page">
+                    <a href="/dashboard/createAnimal" class="nav-link link-body-emphasis" aria-current="page">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#home"></use>
                         </svg>
-                        Add Animal
+                        Create Animal
                     </a>
                 </li>
                 <li>
-                    <a href="register" class="nav-link link-body-emphasis">
+                    <a href="/register" class="nav-link link-body-emphasis">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#speedometer2"></use>
                         </svg>
@@ -144,7 +144,7 @@ if(!$is_logged_in)
                     <strong>mdo</strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow">
-                    <li><a class="dropdown-item" href="logout">Sign out</a></li>
+                    <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                 </ul>
             </div>
         </header>
