@@ -29,14 +29,14 @@ trait Model
 		$query = "select * from $this->table where ";
 
 		foreach ($keys as $key) {
-			$query .= $key . " = :". $key . " && ";
+			$query .= $key . " = :". $key . " AND ";
 		}
 
 		foreach ($keys_not as $key) {
-			$query .= $key . " != :". $key . " && ";
+			$query .= $key . " != :". $key . " AND ";
 		}
 		
-		$query = trim($query," && ");
+		$query = trim($query," AND ");
 
 		$query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 		$data = array_merge($data, $data_not);
@@ -51,14 +51,14 @@ trait Model
 		$query = "select * from $this->table where ";
 
 		foreach ($keys as $key) {
-			$query .= $key . " = :". $key . " && ";
+			$query .= $key . " = :". $key . " AND ";
 		}
 
 		foreach ($keys_not as $key) {
-			$query .= $key . " != :". $key . " && ";
+			$query .= $key . " != :". $key . " AND ";
 		}
 		
-		$query = trim($query," && ");
+		$query = trim($query," AND ");
 
 		$query .= " limit $this->limit offset $this->offset";
 		$data = array_merge($data, $data_not);

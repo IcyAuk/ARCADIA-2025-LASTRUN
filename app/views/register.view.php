@@ -1,38 +1,47 @@
 <?php $this->view('header');?>
 
-<h1>Create Account</h1>
+<h1 class="text-center">Create Account</h1>
 
-<form method="post">
+<form method="post" class="container mt-5">
 
     <?php if (!empty($errors)): ?>
-        <div class="errors">
+        <div class="alert alert-danger">
             <?php foreach ($errors as $error): ?>
                 <p><?php echo $error; ?></p>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
 
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" required><br>
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" required>
+    </div>
 
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" required><br>
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" required>
+    </div>
 
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" name="email" id="email" required>
+    </div>
 
-    <label for="email">email</label>
-    <input type="email" name="email" id="email" required>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" id="password" required>
+    </div>
 
-    <label for="password">password</label>
-    <input type="password" name="password" id="password" required>
+    <div class="form-group">
+        <label for="level">Level:</label>
+        <select id="level" name="level" class="form-control" required>
+            <option value="Vet">Vet</option>
+            <option value="Mod">Mod</option>
+            <option value="Admin">Admin</option>
+        </select>
+    </div>
 
-    <label for="level">Level:</label>
-    <select id="level" name="level" required>
-        <option value="Vet">Vet</option>
-        <option value="Mod">Mod</option>
-        <option value="Admin">Admin</option>
-    </select>
-
-    <input type="submit" value="add staff member">
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
 
 <?php $this->view('footer');?>

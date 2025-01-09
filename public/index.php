@@ -1,8 +1,4 @@
 <?php
-echo($_SERVER['SERVER_NAME'] );
-echo("</br>");
-echo("front controller current dir: ".__DIR__);
-echo("</br>");
 
 // Enable error reporting
 ini_set('display_errors', 1);
@@ -33,8 +29,6 @@ try{
 
 //  Absolute Path to this file
 define('ROOTPATH', __DIR__ . DIRECTORY_SEPARATOR);
-echo(ROOTPATH);
-echo("</br>");
 
 //init
 require "../app/core/init.php";

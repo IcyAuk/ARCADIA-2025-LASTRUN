@@ -1,5 +1,7 @@
 <?php 
 
+//this class definitely is NOT acting like a model
+
 /**
  * Request class
  * Gets and sets data in the POST and GET global variables
