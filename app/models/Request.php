@@ -1,6 +1,6 @@
 <?php 
 
-//this class definitely is NOT acting like a model
+//i just wanted to abstract POST and GET superglobals.
 
 /**
  * Request class

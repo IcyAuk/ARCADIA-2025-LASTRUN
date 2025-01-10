@@ -14,15 +14,17 @@ trait Model
 	protected $order_column = "id";
 	public $errors 		= [];
 
-	public function findAll()
+	public function readAll() //$data is associative array
 	{
 	
-		$query = "select * from $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
+		$query = "select * from $this->table";
+		
+		$query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 
 		return $this->query($query);
 	}
 
-	public function where($data, $data_not = []) //$data is associative array
+	public function readWhere($data, $data_not = []) //$data is associative array
 	{
 		$keys = array_keys($data);
 		$keys_not = array_keys($data_not);
@@ -44,7 +46,7 @@ trait Model
 		return $this->query($query, $data); //array data is passed to prepare statement
 	}
 
-	public function first($data, $data_not = [])
+	public function readFirst($data, $data_not = [])
 	{
 		$keys = array_keys($data);
 		$keys_not = array_keys($data_not);
@@ -136,11 +138,5 @@ trait Model
 		return false;
 
 	}
-	
-    public function join($table, $condition, $columns = '*')
-    {
-        $query = "SELECT $columns FROM $this->table JOIN $table ON $condition";
-        return $this->query($query);
-    }
 	
 }

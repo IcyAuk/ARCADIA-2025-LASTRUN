@@ -27,7 +27,7 @@ class Login
 			$email = $req->getFromPost('email');
 			$password = $req->getFromPost('password');
 
-			if($row = $user->first(['email'=>$email]))
+			if($row = $user->readFirst(['email'=>$email]))
 			{
 				//check if password is correct
 				if(password_verify($password, $row->passwordHash))

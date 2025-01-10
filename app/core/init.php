@@ -25,6 +25,7 @@ require 'functions.php';
 require 'Database.php';
 require 'Model.php';
 require 'Controller.php';
+require 'AJAX.php';
 require 'App.php';
 
 function uctwo(string $string) : string

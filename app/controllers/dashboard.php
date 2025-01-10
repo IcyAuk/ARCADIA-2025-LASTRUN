@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Model\Animal as AnimalModel;
+use App\Controller\AnimalController;
+
 use App\Model\Habitat;
 use App\Model\Images;
 use App\Model\Request;
@@ -20,50 +21,7 @@ class Dashboard
         $data = [];
         $session = new Session();
         
-        $this->view('dashboard', $data);
+        $this->view('dashboard');
     }
 
-    public function listAnimals()
-    {
-        $data = [];
-        $animal = new AnimalModel();
-        $data['animal'] = $animal->findAll();
-        
-        $this->view('dashboard.animal.list', $data);
-    }
-
-    public function createAnimal()
-    {
-        $data = [];
-
-        $req = new Request();
-        $ses = new Session();
-        $ses->checkLevel(['Admin']) ? : redirect('login');
-
-        if ($req->posted())
-        {
-            $animal = new AnimalModel();
-            $habitat = new Habitat();
-
-            $animalData = $req->getFromPost();
-
-            // Validate habitat
-            if (!$habitat->first(['id' => $animalData['habitat_id']]))
-            {
-                $animal->errors['habitat_id'] = "Invalid habitat selected";
-            }
-
-            if (empty($animal->errors) && $animal->validate($animalData))
-            {
-                $animal->insert($animalData);
-                redirect('dashboard/listAnimals');
-            }
-
-            $data['errors'] = $animal->errors;
-        }
-
-        $data['habitats'] = (new Habitat())->findAll();
-
-        $this->view('dashboard.animal.create', $data);
-    }
 }

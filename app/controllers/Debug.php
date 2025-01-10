@@ -22,7 +22,7 @@ class Debug
         //Link to sibling Model that is tied to database
         $model = new DebugModel();
 
-        $data['race'] = $model->findAll();
+        $data['race'] = $model->readAll();
 
         //render appropriate view. Can pass data array.
         $this->view('debug',$data);

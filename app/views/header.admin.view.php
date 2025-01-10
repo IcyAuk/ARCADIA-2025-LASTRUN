@@ -23,7 +23,31 @@ if(!$is_logged_in)
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 </head>
-
+<script defer>
+        $(document).ready(function() {
+            $('#loadAnimals').click(function() {
+                $.ajax({
+                    url: '/animal/read',
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.success) {
+                            let animals = response.data;
+                            let animalList = $('#animalList');
+                            animalList.empty();
+                            animals.forEach(function(animal) {
+                                animalList.append('<p>' + animal.name + '</p>');
+                            });
+                        } else {
+                            alert(response.error);
+                        }
+                    },
+                    error: function() {
+                        alert('Error loading animals');
+                    }
+                });
+            });
+        });
+    </script>
 <body>
     <div class="d-flex">
         <header class="flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
@@ -103,7 +127,7 @@ if(!$is_logged_in)
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/createAnimal" class="nav-link link-body-emphasis" aria-current="page">
+                    <a id="createAnimal" href="/animal/createAnimal" class="nav-link link-body-emphasis" aria-current="page">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#home"></use>
                         </svg>
@@ -111,7 +135,7 @@ if(!$is_logged_in)
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/listAnimals" class="nav-link link-body-emphasis" aria-current="page">
+                    <a id="readAnimal" href="/animal/readAnimal" class="nav-link link-body-emphasis" aria-current="page">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#home"></use>
                         </svg>
