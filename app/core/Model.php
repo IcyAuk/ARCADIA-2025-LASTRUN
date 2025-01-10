@@ -136,12 +136,11 @@ trait Model
 		return false;
 
 	}
-
-	public function join($table, $condition, $type = 'INNER')
-	{
-		$query = "select * from $this->table $type JOIN $table ON $condition";
-		return $this->query($query);
-	}
-
+	
+    public function join($table, $condition, $columns = '*')
+    {
+        $query = "SELECT $columns FROM $this->table JOIN $table ON $condition";
+        return $this->query($query);
+    }
 	
 }

@@ -1,4 +1,4 @@
-<?php $this->view('header.admin'); ?>
+<?php $this->view('header.admin');?>
 
 <h1 class="text-center">Animal List</h1>
 
@@ -6,20 +6,19 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Race</th>
                 <th>Habitat ID</th>
-                <th>Image ID</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($animals as $animal): ?>
-                <tr>
-                    <td><?php echo $animal->name ?? 'N/A';?></td>
-                    <td><?php echo $animal->race ?? 'N/A'; ?></td>
-                </tr>
-            <?php endforeach; ?>
+            <?php if (!empty($data['animal'])): ?>
+                <?php foreach ($data['animal'] as $animal): ?>
+                    <tr>
+                        <td><?=$animal->name;?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>

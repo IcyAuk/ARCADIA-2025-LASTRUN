@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS Images(
 CREATE TABLE IF NOT EXISTS Habitat(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     title VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
-    image_id INT NOT NULL,
+    description TEXT NULL,
+    image_id INT NULL,
     FOREIGN KEY (image_id) REFERENCES Images(id)
 );
 
@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS Animal(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     race_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    habitat_id INT NOT NULL,
-    image_id INT NOT NULL,
+    habitat_id INT NULL,
+    image_id INT NULL,
     FOREIGN KEY (habitat_id) REFERENCES Habitat(id),
     FOREIGN KEY (image_id) REFERENCES Images(id),
     FOREIGN KEY (race_id) REFERENCES Race(id)
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS AnimalFoodLog(
     givenFoodKilogram FLOAT NOT NULL,
     logDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     animal_id INT NOT NULL,
-    mod_id INT NOT NULL,
+    mod_id INT NULL,
     FOREIGN KEY (animal_id) REFERENCES Animal(id),
     FOREIGN KEY (mod_id) REFERENCES Staff(id)
 );

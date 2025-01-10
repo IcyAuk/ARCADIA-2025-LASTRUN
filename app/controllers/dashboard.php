@@ -27,7 +27,7 @@ class Dashboard
     {
         $data = [];
         $animal = new AnimalModel();
-        $data['animals'] = $animal->findAll() ? $animal : [];
+        $data['animal'] = $animal->findAll();
         
         $this->view('dashboard.animal.list', $data);
     }
