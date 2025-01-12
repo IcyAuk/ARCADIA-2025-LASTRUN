@@ -136,6 +136,12 @@ trait Model
 		return false;
 
 	}
+	
+	
+    public function lastInsertId()
+    {
+        return self::$pdo->lastInsertId();
+    }
 
 	
 }

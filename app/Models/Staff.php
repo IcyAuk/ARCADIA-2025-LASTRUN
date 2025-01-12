@@ -20,6 +20,10 @@ class Staff
 		'passwordHash',
 
 	];
+	public function __construct()
+	{
+		$db = $this->openDatabaseConnection();
+	}
 
 	public function validate(array $data)
 	{
@@ -72,5 +76,11 @@ class Staff
 		}
 
 		return false;
+	}
+
+	public function getStaffMembers()
+	{
+		$query = "SELECT id, firstName, lastName FROM $this->table";
+		return $this->query($query);
 	}
 }
