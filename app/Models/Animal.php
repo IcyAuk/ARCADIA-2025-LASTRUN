@@ -32,6 +32,12 @@ class Animal
 		return $this->query($query, [$name, $habitatId, $id]);
 	}
 
+	public function delete($id)
+	{
+		$query = "DELETE FROM animal WHERE id = ?";
+		$this->query($query, [$id]);
+		return true;
+	}
 
 	public function updateAnimalImagePath($id, $imageId)
 	{

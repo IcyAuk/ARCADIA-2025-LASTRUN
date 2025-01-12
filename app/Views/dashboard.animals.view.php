@@ -51,12 +51,10 @@
                 <?php endif; ?>
             </td>
             <td>
-                <button type="button" class="button update-button" data-id="<?php echo $animal->id; ?>"
+                <button type="button" class="button update-button" data-id="<?=$animal->id?>"
                     data-name="<?php echo $animal->name; ?>"
                     data-habitat="<?php echo $animal->habitat_id; ?>">Update</button>
-
-                <a href="/dashboard/animals/delete/<?=$animal->id; ?>" class="button"
-                    onclick="return confirm('Are you sure you want to delete this animal?');">Delete</a>
+                <button type="button" class="delete-button" data-id="<?=$animal->id?>">Supprimer</button>
             </td>
             <td>
                 <form action="/dashboard/uploadImage/<?=$animal->id; ?>" method="post" enctype="multipart/form-data">

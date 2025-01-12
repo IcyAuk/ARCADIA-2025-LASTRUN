@@ -52,6 +52,14 @@ class Dashboard
         redirect('/dashboard/animals');
     }
 
+    public function deleteAnimal($id)
+    {
+        $animalModel = new \App\Model\Animal();
+        $result = $animalModel->delete($id);
+        echo json_encode(['success' => $result]);
+
+    }
+
     public function staff()
     {
         $this->view('dashboard.staff');

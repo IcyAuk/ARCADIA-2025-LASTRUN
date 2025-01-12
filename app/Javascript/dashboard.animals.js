@@ -13,8 +13,20 @@
     deleteButtons.forEach((button) => {
       button.addEventListener("click", function (event) {
         const id = this.getAttribute("data-id");
-        if (!confirm("Are you sure you want to delete this animal?")) {
-          event.preventDefault();
+        if (confirm("Supprimer?")) {
+            fetch(`/dashboard/deleteAnimal/${id}`, {
+                method: "POST",
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                if (data.success) {
+                    console.log("Element to remove:", this.closest("tr")); // Debugging line
+
+                    this.closest("tr").remove();
+                } else {
+                    alert("Erreur lors de la suppression");
+                }
+                });
         }
       });
     });
