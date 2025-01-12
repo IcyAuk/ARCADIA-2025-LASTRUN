@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Core\CoreController;
 use App\Model\Session;
 use App\Model\Image;
-use App\Model\Animal;
+use App\Model\Habitat;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
@@ -29,10 +29,27 @@ class Dashboard
     
     public function animals()
     {
+
         $animalModel = new \App\Model\Animal();
         $animals = $animalModel->getAnimals();
-        $this->view('dashboard.animals',['animals'=>$animals]);
-        var_dump($animals);
+        $habitatModel = new \App\Model\Habitat();
+        $habitats = $habitatModel->getHabitats();
+
+        $this->view('dashboard.header');
+
+        $this->view('dashboard.animals',['animals'=>$animals,'habitats'=>$habitats]);
+        $this->loadJS('dashboard.animals');
+
+        $this->view('dashboard.footer');
+    }
+
+    public function updateAnimal($id)
+    {
+        $animalModel = new \App\Model\Animal();
+        $name = $_POST['name'];
+        $habitatId = $_POST['habitat'];
+        $animalModel->updateAnimal($id, $name, $habitatId);
+        redirect('/dashboard/animals');
     }
 
     public function staff()

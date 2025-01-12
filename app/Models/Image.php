@@ -1,5 +1,6 @@
 <?php
 namespace App\Model;
+use App\Model\ImageModel;
 //handles image uploads
 trait Image
 {
@@ -17,9 +18,10 @@ trait Image
 
                 if ($check !== false) {
                     if (move_uploaded_file($_FILES["animal_image"]["tmp_name"], $targetFile)) {
-
-                    // Insert the image path into the Images table and get the image ID
+                    //remove old image from db and dir
                     $imageModel = new \App\Model\ImageModel();
+                    
+                    // Insert the image path into the Images table and get the image ID
                     $imageId = $imageModel->insertImage($targetFile);
 
                         // Update the animal's image path in the database

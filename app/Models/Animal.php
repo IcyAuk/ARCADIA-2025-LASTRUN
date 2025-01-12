@@ -16,6 +16,7 @@ class Animal
 		$db = $this->openDatabaseConnection();
 	}
 
+	//Core Model lacks join abscraction. Queries will be written manually.
 	public function getAnimals()
 	{
 		$query = "SELECT a.id, a.name, a.race, h.title as habitat_title, i.path as image_path 
@@ -24,6 +25,13 @@ class Animal
                   LEFT JOIN habitat h ON a.habitat_id = h.id";
 		return $this->query($query);
 	}
+
+	public function updateAnimal($id, $name, $habitatId)
+	{
+		$query = "UPDATE animal SET name = ?, habitat_id = ? WHERE id = ?";
+		return $this->query($query, [$name, $habitatId, $id]);
+	}
+
 
 	public function updateAnimalImagePath($id, $imageId)
 	{

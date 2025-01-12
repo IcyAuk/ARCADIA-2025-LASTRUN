@@ -10,10 +10,17 @@ class ImageModel
     use Model;
     protected $table = 'images';
 
+    
     public function insertImage($path)
     {
         $query = "INSERT INTO images (path) VALUES (?)";
         $this->query($query, [$path]);
         return $this->lastInsertId();
+    }
+
+    public function unlinkImageForeignKey($id)
+    {
+        $query = "UPDATE animal SET image_id = NULL WHERE image_id = ?";
+        return $this->query($query, [$id]);
     }
 }
