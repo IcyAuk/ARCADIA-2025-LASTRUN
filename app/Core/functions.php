@@ -12,8 +12,8 @@ function check_extensions()
 		'gd',
 		'mysqli',
 		'pdo_mysql',
-		'pdo_sqlite',
-		'mongodb',
+		//'pdo_sqlite',
+		//'mongodb',
 	];
 
 	$not_loaded = [];

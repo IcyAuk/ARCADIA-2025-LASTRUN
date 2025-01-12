@@ -1,4 +1,5 @@
 <?php
+//turns first two url components into controller method
 namespace App\Core;
 defined('ROOTPATH') OR die();
 if (basename(__FILE__) == basename($_SERVER['PHP_SELF'])) {

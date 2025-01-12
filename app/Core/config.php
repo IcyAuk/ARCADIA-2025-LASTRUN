@@ -27,7 +27,7 @@ if($_SERVER['SERVER_NAME'] == 'arcadia.test')
 
 define('LOCALHOST_URL', 'http://arcadia-2025-lastrun.local');
 
-define('DATABASE_MONGODB_URI', $_ENV['DATABASE_MONGODB_URI']);
+// define('DATABASE_MONGODB_URI', $_ENV['DATABASE_MONGODB_URI']);
 
 define('APP_NAME', "ARCADIA");
 define('APP_DESC', "Site de Zoo");
