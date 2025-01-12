@@ -1,7 +1,0 @@
-#LOCALMACHINE HTACCESS
-#REDIRECT TO PUBLIC FOLDER
-
-RewriteEngine On
-
-#send everything else to the index page
-RewriteRule ^(.*)$ public/index.php?url=$1 [L,QSA]

@@ -8,7 +8,7 @@ if($_SERVER['SERVER_NAME'] == 'arcadia.test')
 	define('ROOT', 'http://arcadia.test/');
 	define('DBNAME', 'arcadia');
 	define('DBHOST', 'localhost');
-	define('DBUSER', '');
+	define('DBUSER', 'root');
 	define('DBPASS', '');
 	define('DBPORT', '');
 	define('DBCHARSET', '');

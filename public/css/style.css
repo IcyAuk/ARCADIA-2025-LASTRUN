@@ -1,0 +1,9 @@
+.container {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+a:visited {
+    color: green; /* or specify another color */
+}
