@@ -16,6 +16,12 @@ class Animal
 		$db = $this->openDatabaseConnection();
 	}
 
+	public function createAnimal($name, $race, $habitatId)
+	{
+		$query = "INSERT INTO animal (name, race, habitat_id) VALUES (?, ?, ?)";
+		return $this->query($query, [$name, $race, $habitatId]);
+	}
+
 	//Core Model lacks join abscraction. Queries will be written manually.
 	public function getAnimals()
 	{
@@ -34,9 +40,17 @@ class Animal
 
 	public function delete($id)
 	{
-		$query = "DELETE FROM animal WHERE id = ?";
-		$this->query($query, [$id]);
-		return true;
+		try
+		{
+
+			$query = "DELETE FROM animal WHERE id = ?";
+			$this->query($query, [$id]);
+			return true;
+		}catch(\Exception $e)
+		{
+			return false;
+		}
+
 	}
 
 	public function updateAnimalImagePath($id, $imageId)

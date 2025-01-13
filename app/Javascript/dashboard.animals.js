@@ -1,4 +1,10 @@
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
+
+  const createButton = document.getElementById("create-button");
+  createButton.addEventListener("click", function () {
+      document.getElementById("createModal").style.display = "block";
+  });
+  
     const updateButtons = document.querySelectorAll(".update-button");
     updateButtons.forEach((button) => {
       button.addEventListener("click", function () {

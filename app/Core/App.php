@@ -3,7 +3,7 @@
 namespace App\Core;
 defined('ROOTPATH') OR die();
 if (basename(__FILE__) == basename($_SERVER['PHP_SELF'])) {
-    exit('No direct script access allowed');
+    exit();
 }
 
 class App

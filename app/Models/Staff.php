@@ -11,6 +11,8 @@ class Staff
     use Model;
 	protected $table = 'Staff';
 
+	public $allowedLevels = ['Vet', 'Mod'];
+
 	protected $allowedColumns = [
 		
 		'level',
@@ -23,6 +25,19 @@ class Staff
 	public function __construct()
 	{
 		$db = $this->openDatabaseConnection();
+	}
+
+	public function deleteStaffMember($id)
+	{
+		try
+		{
+			$query = "DELETE FROM staff WHERE id = ? AND level != 'Admin'";
+			$this->query($query, [$id]);
+			return true;
+		}catch(\Exception $e)
+		{
+			return false;
+		}
 	}
 
 	public function validate(array $data)
@@ -68,7 +83,9 @@ class Staff
         if(!in_array($data['level'], ['Vet', 'Mod', 'Admin']))
         {
             $this->errors['level'] = "Invalid level selected";
-        }
+        }  else if (!in_array($data['level'], $this->allowedLevels)) { //prevent html insertion
+			$this->errors['level'] = "Invalid level selected";
+		}
 
 		if(empty($this->errors))
 		{
@@ -80,7 +97,7 @@ class Staff
 
 	public function getStaffMembers()
 	{
-		$query = "SELECT id, firstName, lastName FROM $this->table";
+		$query = "SELECT id, level, email, firstName, lastName FROM $this->table";
 		return $this->query($query);
 	}
 }

@@ -20,7 +20,30 @@
     </form>
 </div>
 
-<!-- ANIMAL DELETE MODAL -->
+<!-- ANIMAL CREATE MODAL -->
+<div id="createModal"style="display:none;">
+    <form id="createForm" action="/dashboard/createAnimal" method="post">
+        <h3>Add Animal</h3>
+        <label for="name">Name</label>
+        <input type="text" name="name" required>
+
+        <label for="race">race</label>
+        <input type="text" name="race" required>
+
+        <label for="habitat">Habitat</label>
+        <select name="habitat" id="animalHabitat" required>
+            <?php foreach ($habitats as $habitat): ?>
+            <option value="<?php echo $habitat->id; ?>">
+                <?php echo $habitat->title; ?>
+            </option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+<!--CREATE ANIMAL BUTTON-->
+<button id="create-button"type="button">Ajouter Animal</button>
 
 <!-- ANIMAL LIST -->
 <?php if (!empty($animals)): ?>

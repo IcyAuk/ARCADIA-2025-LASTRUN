@@ -16,8 +16,11 @@ use App\Model\Session;
 class Register
 {
 	use CoreController;
-
 	public function index()
+	{
+		redirect('login');
+	}
+	public function createStaffMember()
 	{
 		$data = [];
 
@@ -47,13 +50,10 @@ class Register
                 unset($postData['password']);
 
 				$user->insert($postData);
-				redirect('login');
+				redirect('dashboard/staff');
 			}
 			$data['errors'] = $user->errors;
 		}
-
-
-		$this->view('register',$data);
 	}
 
 }
