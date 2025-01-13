@@ -14,6 +14,13 @@ class Session
 	private const MAIN_KEY = 'APP';
 	private const USER_KEY = 'USER';
 
+	public static function CSRF()
+	{
+		if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['token']) {
+            die('Invalid CSRF token');
+        }
+	}
+
     public function getMainKey()
     {
         return self::MAIN_KEY;

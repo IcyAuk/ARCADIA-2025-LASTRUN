@@ -22,11 +22,13 @@ class Register
 	}
 	public function createStaffMember()
 	{
+		Session::CSRF();
+		
 		$data = [];
 
 		$req = new Request;
 		$ses = new Session();
-		$ses->checkLevel(['Admin']) ? : redirect('login');
+		$ses->checkLevel(['Admin']) ? : redirect('dashboard');
 
 		if($req->posted())
 		{

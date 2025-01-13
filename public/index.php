@@ -6,8 +6,20 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // FRONT CONTROLLER
+session_set_cookie_params([
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+
+ini_set('session.gc_maxlifetime', 900); // 15 minutes
+
 
 session_start();
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+}
+$token = $_SESSION['token'];
 
 //Check PHP version
 $minPHPVersion = '8.0';
@@ -37,5 +49,6 @@ require "../app/core/init.php";
 //DEBUG ? ini_set('display_errors', 1) : ini_set('display_errors', 0);
 
 //Start App
+
 $app = new App\Core\App();
 $app->loadController();

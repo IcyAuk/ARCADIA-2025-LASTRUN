@@ -33,6 +33,8 @@ class Dashboard
     
     public function animals()
     {
+        $ses = new Session();
+        $ses->checkLevel(['Admin']) ? : redirect('dashboard');
 
         $animalModel = new Animal();
         $animals = $animalModel->getAnimals();
@@ -69,14 +71,15 @@ class Dashboard
     public function deleteAnimal($id)
     {
         $animalModel = new Animal();
-        $result = $animalModel->delete($id);
+        $result = $animalModel->delete($id); //child model method, not core model
         echo json_encode(['success' => $result]);
 
     }
 
     public function staff()
     {
-
+        $ses = new Session();
+        $ses->checkLevel(['Admin']) ? : redirect('dashboard');
         $staffModel = new Staff();
         $staff = $staffModel->getStaffMembers();
         $level = $staffModel->allowedLevels;

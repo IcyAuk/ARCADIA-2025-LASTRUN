@@ -1,8 +1,8 @@
 <h2>Staff Members</h2>
 
 <!-- STAFF CREATE MODAL -->
-<h1>Register Staff</h1>
 <form id="createModal" action="/register/createStaffMember" method="post" style="display:none;">
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['token']; ?>">
 
     <label for="firstName">firstName:</label>
     <input type="text" id="firstName" name="firstName" required>

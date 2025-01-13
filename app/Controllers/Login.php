@@ -35,8 +35,10 @@ class Login
 					//auth
 					$ses = new Session;
 					$ses->auth($row);
-
+					
+					
 					redirect('dashboard');
+					session_regenerate_id(true);
 				}
 			}
 			$user->errors['email'] = "Wrong credentials";
